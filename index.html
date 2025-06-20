@@ -1,0 +1,356 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>True — Forest of Reapers</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&amp;display=swap" rel="stylesheet"/>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      font-family: 'Orbitron', sans-serif;
+      overflow: hidden;
+      background: url('fa681711-e581-4279-bed4-31b761589a70.png') no-repeat center center fixed;
+      background-size: cover;
+    }
+    .container {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      backdrop-filter: blur(6px);
+    }
+    .avatar {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #00fff7;
+      box-shadow: 0 0 25px #00fff7;
+    }
+    h1 {
+      font-size: 3rem;
+      margin: 20px 0;
+      color: #00fff7;
+      text-shadow: 0 0 10px #00fff7;
+    }
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      gap: 20px;
+    }
+    .btn {
+      padding: 14px 28px;
+      background: rgba(0,0,0,0.5);
+      border: 2px solid #00fff7;
+      border-radius: 12px;
+      text-decoration: none;
+      color: white;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    
+.btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+
+.btn {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+.btn:hover {
+
+
+      
+transform: rotateY(var(--tiltY, 8deg)) rotateX(var(--tiltX, 4deg)) scale(1.05);
+
+      box-shadow: 0 0 12px #00fff7;
+      background: #00fff7;
+      color: black;
+    }
+    .discord-widget {
+      margin-top: 40px;
+      padding: 20px 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      perspective: 1000px;
+      transform-style: preserve-3d;
+      transition: transform 0.4s ease;
+    }
+    .discord-widget:hover {
+      transform: rotateY(-15deg) rotateX(8deg) scale(1.02);
+    }
+    .discord-widget img {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+    }
+    #discord-status {
+      margin-top: 10px;
+      font-size: 1.1rem;
+    }
+    #copy-toast {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #43b581;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      display: none;
+      z-index: 1000;
+    }
+    .music-player {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 0 20px rgba(0,255,255,0.3);
+
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 600px;
+      background: rgba(0,0,0,0.6);
+      padding: 20px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 0 25px rgba(0,255,255,0.4);
+    }
+    .music-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .track-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    input[type="range"] {
+      width: 120px;
+      cursor: pointer;
+    }
+    .volume-icon {
+      width: 28px;
+      filter: invert(1);
+    }
+  </style>
+<style>
+  .btn {
+    transition: all 0.35s ease;
+    transform-style: preserve-3d;
+    perspective: 800px;
+  }
+  .btn:hover {
+    transform: rotateY(12deg) rotateX(6deg) scale(1.1);
+    box-shadow: 0 0 20px cyan;
+  }
+  .music-player {
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 20px;
+    border: 1px solid rgba(0,255,255,0.2);
+    box-shadow: 0 0 20px rgba(0,255,255,0.2);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    margin: 0 auto;
+  }
+  .music-player audio {
+    width: 200px;
+  }
+</style>
+</head>
+<body>
+<video autoplay="" id="bg-video" loop="" muted="" playsinline="" style="
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: -1;
+">
+<source src="5ufw.mp4" type="video/mp4"/>
+</video>
+<div class="container">
+<img alt="Avatar" class="avatar" src="photo_2025-06-15_18-49-45.jpg"/>
+<h1>True</h1>
+<div class="buttons">
+<a class="btn" href="https://t.me/truereaper" style="--tiltY:-8deg;--tiltX:3deg;" target="_blank">Telegram</a>
+<a class="btn" href="#" onclick="copyDiscord(event)">Discord: ok.1.1</a>
+</div>
+<div class="discord-widget">
+<img alt="Server Icon" src="photo_2025-06-18_02-03-54.jpg"/>
+<div id="discord-status" style="margin-bottom: 10px;">🟢 Checking online...</div>
+<a class="btn" href="https://discord.gg/forest-of-reapers" style="margin-top:15px; --tiltY:6deg;--tiltX:2deg;">Join Server</a>
+</div>
+</div>
+<div class="music-player">
+<img alt="Cover" class="cover" src="artworks-FcxLtRfxbndCDzPt-Ibyl1A-t500x500.jpg"/>
+<div class="track-details">
+<div class="track-title">Гладиатор/Рыцарь</div>
+<audio autoplay="" id="audio" loop="" preload="metadata">
+<source src="tmphzk69b2x.mp3" type="audio/mpeg">
+</source></audio>
+<div class="progress-container">
+<span id="current-time">00:00</span>
+<input id="progress" min="0" step="1" type="range" value="0"/>
+<span id="duration">02:19</span>
+</div>
+</div>
+<div class="controls">
+<input id="volume-control" max="1" min="0" step="0.01" title="Volume" type="range" value="1">
+</input></div>
+</div>
+<style>
+.music-player {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  background: #000;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  color: white;
+  font-family: Arial, sans-serif;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+}
+.cover {
+  width: 50px;
+  height: 50px;
+  border-radius: 4px;
+  margin-right: 15px;
+}
+.track-details {
+  flex: 1;
+}
+.track-title {
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+.progress-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+#progress {
+  flex: 1;
+  appearance: none;
+  height: 4px;
+  background: #555;
+  border-radius: 2px;
+  outline: none;
+}
+#progress::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: red;
+  border-radius: 50%;
+  cursor: pointer;
+}
+#volume-control {
+  width: 80px;
+  margin-left: 10px;
+}
+</style>
+<script>
+const audio = document.getElementById('audio');
+const progress = document.getElementById('progress');
+const volumeControl = document.getElementById('volume-control');
+const currentTimeEl = document.getElementById('current-time');
+const durationEl = document.getElementById('duration');
+
+audio.volume = 1;
+
+audio.addEventListener('loadedmetadata', () => {
+  progress.max = Math.floor(audio.duration);
+  durationEl.textContent = formatTime(audio.duration);
+});
+
+audio.addEventListener('timeupdate', () => {
+  progress.value = Math.floor(audio.currentTime);
+  currentTimeEl.textContent = formatTime(audio.currentTime);
+});
+
+progress.addEventListener('input', () => {
+  audio.currentTime = progress.value;
+});
+
+volumeControl.addEventListener('input', () => {
+  audio.volume = parseFloat(volumeControl.value);
+});
+
+function formatTime(time) {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time % 60).toString().padStart(2, '0');
+  return `${minutes}:${seconds}`;
+}
+
+checkDiscordServer();</script>
+<audio autoplay="" id="bg-music" loop="">
+<source src="tmphzk69b2x.mp3" type="audio/mp3"/>
+</audio>
+
+<div class="controls">
+<img class="volume-icon" onclick="toggleAudio()" src="https://cdn-icons-png.flaticon.com/512/727/727245.png" title="Mute / Unmute"/>
+<input max="1" min="0" onchange="setVolume(this.value)" step="0.01" type="range" value="1"/>
+</div>
+
+<div id="copy-toast">Discord copied!</div>
+<script>
+  const audio = document.getElementById('bg-music');
+  function toggleAudio() {
+    if (audio.paused) audio.play();
+    else audio.pause();
+  }
+  function setVolume(val) {
+    audio.volume = val;
+  }
+  function copyDiscord(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText("ok.1.1").then(() => {
+      const toast = document.getElementById("copy-toast");
+      toast.style.display = "block";
+      setTimeout(() => { toast.style.display = "none"; }, 2000);
+    });
+  }
+  async function checkDiscordServer() {
+    try {
+      const res = await fetch("https://discord.com/api/v9/invites/forest-of-reapers?with_counts=true");
+      const data = await res.json();
+      const online = data.approximate_presence_count;
+      const members = data.approximate_member_count;
+      document.getElementById("discord-status").innerText = `🟢 ${online} Online • ${members} Members`;
+    } catch (e) {
+      document.getElementById("discord-status").innerText = "🔴 Unable to fetch server data.";
+    }
+  }
+  checkDiscordServer();
+</script>
+</body>
+</html>
